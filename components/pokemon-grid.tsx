@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+
 'use client'
 import { useState } from 'react'
 import { Label } from './ui/label';
@@ -10,7 +12,15 @@ interface PokemonGridPrps {
 
 export function PokemonGrid({ pokemonList }: PokemonGridPrps) {
     const [searchText, setSearchText] = useState("");
-    console.log(pokemonList)
+
+    const searchFilter = (pokemonList: any) => {
+        return pokemonList.filter(
+            (pokemon: any) => pokemon.name.toLowerCase().includes(searchText.toLowerCase())
+        )
+    }
+
+    const filteredPokemonList = searchFilter(pokemonList);
+
     return (
         <>
             <div>
@@ -30,12 +40,11 @@ export function PokemonGrid({ pokemonList }: PokemonGridPrps) {
             </div>
 
             <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-                {pokemonList.map((pokemon: any) => {
-
+                {filteredPokemonList.map((pokemon: any) => {
+                    return (
+                        <PokemonCard name={pokemon.name} />
+                    )
                 })}
-                <PokemonCard name='Pikachu' />
-                <PokemonCard name='Pikachu' />
-                <PokemonCard name='Pikachu' />
             </div>
         </>
     )

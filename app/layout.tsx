@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 import { ThemeProvider } from "@/components/theme-provider";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,7 +23,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark">
           <main className="flex min-h-screen flex-col items-center p-24">
             <div className="z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex">
-              <h2 className="text-2x1 text-bold">PokemonFinder</h2>
+              <Link href="/" ><h2 className="text-2x1 text-bold">PokemonFinder</h2></Link>
             </div>
             {children}
           </main>
